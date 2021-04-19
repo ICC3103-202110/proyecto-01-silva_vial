@@ -27,28 +27,36 @@ class Game:
                 self.coins+=2
                 return self.coins
     
-            elif action== "coup" and self.coins>=7:
-                self.coins-=7
-                print(array)
-                couped_player=input("Which player do you want to copue: ")
-                while couped_player not in array:
+            elif action== "coup" :
+                if self.coins>=7:
+                    self.coins-=7
                     print(array)
-                    couped_player=input("You must give a valid player: ")
-                return couped_player 
+                    couped_player=input("Which player do you want to copue: ")
+                    while couped_player not in array:
+                        print(array)
+                        couped_player=input("You must give a valid player: ")
+                    return couped_player
+                else:
+                    print("You don´t have enough coins to make that action\n")
+                    return "not valid"
                
     
             elif action== 'taxes':
                 self.coins+=3
                 return self.coins
             
-            elif action== "murder" and self.coins >=3:
-                self.coins-=3
-                print(array)
-                murdered_player=input("Which player do you want to kill: ")
-                while murdered_player not in array:
+            elif action== "murder":
+                if self.coins >=3:
+                    self.coins-=3
                     print(array)
-                    murdered_player=input("You must give a valid player: ")
-                return murdered_player 
+                    murdered_player=input("Which player do you want to kill: ")
+                    while murdered_player not in array:
+                        print(array)
+                        murdered_player=input("You must give a valid player: ")
+                    return murdered_player
+                else:
+                    print("You don´t have enough coins to make that action\n")
+                    return "not valid"
     
             elif action == "extorsion":
                print(array)
@@ -114,19 +122,6 @@ class Game:
                 else:
                     return bag_of_coins-1
     
-    def Check(self,action,coins):
-        
-        if action=="murder":
-            if coins<3:
-                return 0 # not enough coins to perform action
-            else:
-                return 1
-            
-        if action=="coup":
-            if coins<7:
-                return 0 # not enough coins to perform action
-            else:
-                return 1
-                
+    
        
           

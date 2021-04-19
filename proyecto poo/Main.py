@@ -80,10 +80,12 @@ def main():
             for value in player:
                 if value.name != player[player_turn-1].name:
                     other_players.append(value.name)
+                    
             if action!="change":
                 result=game[player_turn-1].Actions(action, other_players)
             else:
                 result=game[player_turn-1].Actions(action, game[player_turn-1].cards)
+                
            
             while result == "not valid":
                 print("Actions= income, foreign aid, coup, taxes, murder, extorsion, change")
