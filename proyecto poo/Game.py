@@ -119,9 +119,53 @@ class Game:
             else:
                 if bag_of_coins==0:
                     print("This player has no coins left")
+                    return bag_of_coins
                 else:
                     return bag_of_coins-1
     
+    def Influence(self, action):
+        
+        if action=="tax":
+            return "Duke"
+        
+        elif action=="murder":
+            return "Assasin"
+        
+        elif action=="extorsion":
+            return "Captain"
+        
+        elif action=="change":
+            return "Ambassador"
+        else:
+            pass
+        
+    def CounterInfluence(self,action):
+        if action=="foreign aid":
+            return "Duke"
+        
+        if action=="murder":
+            return "Countess"
+        
+        if action=="extorsion":
+            return "Captain"
+        
+    def Solution(self, looser, array):
+        print(array)
+        card_to_turn=input(looser+", you have lost, which card do you want to turn: ")
+        while card_to_turn not in array:
+            card_to_turn=input("You must give a card from your maze: ")
+        return card_to_turn
+    
+    def Refresh(self, card):
+        random.shuffle(self.maze)
+        new_card=self.maze.pop(0)
+        self.maze.append(card)
+        return new_card
+    
+        
+            
+            
+      
     
        
           
