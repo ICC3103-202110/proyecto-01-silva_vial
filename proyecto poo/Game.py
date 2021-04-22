@@ -67,47 +67,68 @@ class Game:
                return stealed_player
                
             elif action== "change":
-                 candidates=[]
-                 random.shuffle(self.maze)
-                 counter=0
-                 while counter<len(array):
-                    candidates.append(self.maze[0])
-                    self.maze.pop(0)
-                    counter+=1
-                 print("\nThe candidates cards are: "+str(candidates))
-                 print("Your cards are: "+str(array))
-                 option1=array
-                 option2=candidates
-                 option3=[array[0],candidates[0]]
-                 option4=[array[0],candidates[1]]
-                 option5=[array[1],candidates[0]]
-                 option6=[array[1],candidates[1]]
+                 if len(array)>1:
+                     candidates=[]
+                     random.shuffle(self.maze)
+                     counter=0
+                     while counter<len(array):
+                        candidates.append(self.maze[0])
+                        self.maze.pop(0)
+                        counter+=1
+                     print("\nThe candidates cards are: "+str(candidates))
+                     print("Your cards are: "+str(array))
+                     option1=array
+                     option2=candidates
+                     option3=[array[0],candidates[0]]
+                     option4=[array[0],candidates[1]]
+                     option5=[array[1],candidates[0]]
+                     option6=[array[1],candidates[1]]
+                     
+                     options=[option1,option2,option3,option4,option5,option6] 
+                     print("\nYour options are:")
+                     counter=1
+                     while counter<=len(options):
+                         print(str(options[counter-1])+" ---> ",str(counter))
+                         counter+=1
+                    
+                     answer=input("Please choose your combination: ")
+                     while answer!="1" and answer!="2" and answer!="3" and answer!="4" and answer!="5" and answer!="6":
+                       answer=input("You must give a valid answer: ")  
+                       
+                     if int(answer)==1:
+                         return option1
+                     if int(answer)==2:
+                         return option2
+                     if int(answer)==3:
+                         return option3
+                     if int(answer)==4:
+                         return option4
+                     if int(answer)==5:
+                         return option5
+                     if int(answer)==6:
+                         return option6
+                 else:
+                     random.shuffle(self.maze)
+                     changer= self.maze.pop(0)
+                     option1=[changer]
+                     option2=[array]
+                     options=[option1,option2]
+                     print("\nYour options are:")
+                     number=1
+                     for value in options:
+                         print(str(value)+" ---> "+str(number))
+                         number+=1
+                    
+                     answer=input("Please choose your combination: ")
+                     while answer!="1" and answer!="2":
+                       answer=input("You must give a valid answer: ")  
+                     if int(answer)==1:
+                         return option1
+                     if int(answer)==2:
+                         return option2
                  
-                 options=[option1,option2,option3,option4,option5,option6] 
-                 print("\Your options are:")
-                 counter=1
-                 while counter<=len(options):
-                     print(str(options[counter-1])+" ---> ",str(counter))
-                     counter+=1
                 
-                 answer=input("Please choose your combination: ")
-                 while answer!="1" and answer!="2" and answer!="3" and answer!="4" and answer!="5" and answer!="6":
-                   answer=input("You must give a valid answer: ")  
-                   
-                 if int(answer)==1:
-                     return option1
-                 if int(answer)==2:
-                     return option2
-                 if int(answer)==3:
-                     return option3
-                 if int(answer)==4:
-                     return option4
-                 if int(answer)==5:
-                     return option5
-                 if int(answer)==6:
-                     return option6
-                 
-                
+                    
         
             else:
                 return "not valid"
@@ -126,28 +147,28 @@ class Game:
     def Influence(self, action):
         
         if action=="tax":
-            return "Duke"
+            return "duke"
         
         elif action=="murder":
-            return "Assasin"
+            return "assasin"
         
         elif action=="extorsion":
-            return "Captain"
+            return "captain"
         
         elif action=="change":
-            return "Ambassador"
+            return "ambassador"
         else:
             pass
         
     def CounterInfluence(self,action):
         if action=="foreign aid":
-            return "Duke"
+            return "duke"
         
         if action=="murder":
-            return "Countess"
+            return "countess"
         
         if action=="extorsion":
-            return "Captain"
+            return "captain"
         
     def Solution(self, looser, array):
         print(array)
